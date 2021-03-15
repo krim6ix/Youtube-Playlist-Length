@@ -4,6 +4,7 @@ let playlistID = ytLink.slice(i+14)
 
 //duration is of the form PT11M22S i.e 11min22sec
 function extractLength(str){
+    console.log("this is extract length ")
     let m = str.search('M');
     let s = str.search('S')
     let min = parseInt(str.slice(2,m));
@@ -12,14 +13,14 @@ function extractLength(str){
 }
 
 function calculateLength(data){
-    let len;
+    console.log("this is calculate length ")
     for(let i of data.items){
         let item = i.contentDetails.duration;
         LENGTH += extractLength(item)
-        $('ol').append(`<li>${LENGTH}</li>`)
     }
 }
 function fetchVideos(videoID){
+    console.log("this is fetch videos ")
     var xhrRequest = new XMLHttpRequest();
     xhrRequest.onload = function(){
         var response = JSON.parse(xhrRequest.response);
@@ -30,9 +31,10 @@ function fetchVideos(videoID){
 }
 
 function iterateVideos(data){
+    
     for(let i of data.items){
         let item = i.snippet.resourceId.videoId;
-        // $('ol').append(`<li>${item}</li>`)
+        // $('ul').append(`<li>${item}</li>`)
         fetchVideos(item);
     }
 }
@@ -48,6 +50,13 @@ function fetchYtplaylist(){
 }
 
 fetchYtplaylist();
+
+setTimeout(function(){
+    var hours = Math.floor(LENGTH / 60 / 60);
+    var minutes = Math.floor(LENGTH / 60) - (hours * 60);
+    var seconds = LENGTH % 60;
+    $('.main-body').append(`<p>Length of the Playlist is ${hours} Hours, ${minutes} minutes, ${seconds} seconds</p>`)    
+},1000)
 
 // $.ajax({
 //     url:'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=1000&playlistId=PLdnsORcN_8yi1iEPXagU0acwtChNQShFe&key=AIzaSyCPOzYkvB9zqXIbfzwpwuIctgvbxqTeviE',
