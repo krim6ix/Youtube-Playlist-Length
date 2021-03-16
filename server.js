@@ -20,4 +20,4 @@ app.post('/fetch-len',function(req,res){
     linkList.push(req.body.playlistLink)
     return res.redirect('back');
 })
-server.listen(3000)
+server.listen(process.env.PORT || 3000)
