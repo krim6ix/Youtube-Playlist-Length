@@ -1,0 +1,11 @@
+.container{
+    background-color: black;
+    color:white
+}
+*{
+    background-color: black;
+}
+
+footer a{
+    text-decoration: none;
+}

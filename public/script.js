@@ -86,8 +86,16 @@ setTimeout(function(){
     var hours = Math.floor(LENGTH / 60 / 60);
     var minutes = Math.floor(LENGTH / 60) - (hours * 60);
     var seconds = LENGTH % 60;
-    $('.main-body').append(`<p>Length of the Playlist is ${hours} Hours, ${minutes} minutes, ${seconds} seconds</p>`)    
+    $('.main-body').append(`<p>Total Number of Vidoes ${linkList.length}</p>`)    
+    $('.main-body').append(`<p>Length of the Playlist is ${hours} Hours, ${minutes} minutes, ${seconds} seconds</p>`)
+    
 },3000)
+
+
+
+
+
+
 
 
 // setTimeout(function(){
